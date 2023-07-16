@@ -1,28 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePersonalData } from "../../features/formSlice";
 import { PersonalDataFormValues } from "../../models/DataFormValues";
-import {
-  FormDataContext,
-  FormDataContextType,
-} from "../../context/FormDataContext";
 
 const PersonalData: React.FC = () => {
-  const { personalData, setPersonalData } = useContext<FormDataContextType>(
-    FormDataContext!
+  const dispatch = useDispatch();
+  const personalData = useSelector(
+    (state: { form: { personalData: PersonalDataFormValues } }) =>
+      state.form.personalData
   );
+  const navigate = useNavigate();
+
   const initialValues: PersonalDataFormValues = {
     firstName: personalData.firstName,
     lastName: personalData.lastName,
     birthDate: personalData.birthDate,
     gender: personalData.gender,
   };
-  const navigate = useNavigate();
 
   const handleSubmit = (values: PersonalDataFormValues) => {
-    console.log(values);
-    setPersonalData(values);
-    navigate("/AcademicData"); // Redireccionar a la página "Academicos"
+    dispatch(updatePersonalData(values));
+    navigate("/Registro/AcademicData"); // Redireccionar a la página "Academicos"
   };
 
   const validateForm = (values: PersonalDataFormValues) => {

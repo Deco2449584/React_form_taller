@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   return (
     <div className="container mx-auto">
       <Routes>
-        <Route path="/" element={<Signin />} />
+        <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot" element={<Forgot />} />
       </Routes>

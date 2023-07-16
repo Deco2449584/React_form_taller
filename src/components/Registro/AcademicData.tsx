@@ -1,27 +1,27 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAcademicData } from "../../features/formSlice";
 import { AcademicDataFormValues } from "../../models/DataFormValues";
-import {
-  FormDataContext,
-  FormDataContextType,
-} from "../../context/FormDataContext";
 
 const AcademicData: React.FC = () => {
-  const { academicData, setAcademicData } = useContext<FormDataContextType>(
-    FormDataContext!
+  const dispatch = useDispatch();
+  const academicData = useSelector(
+    (state: { form: { academicData: AcademicDataFormValues } }) =>
+      state.form.academicData
   );
+  const navigate = useNavigate();
+
   const initialValues: AcademicDataFormValues = {
     degree: academicData.degree,
     institution: academicData.institution,
     year: academicData.year,
   };
-  const navigate = useNavigate();
 
   const handleSubmit = (values: AcademicDataFormValues) => {
-    console.log(values);
-    setAcademicData(values);
-    navigate("/FamilyData"); // Redireccionar a la página "Academicos"
+    dispatch(updateAcademicData(values));
+    navigate("/Registro/FamilyData"); // Redireccionar a la página "FamilyData"
   };
 
   const validateForm = (values: AcademicDataFormValues) => {
@@ -112,7 +112,7 @@ const AcademicData: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <Link
-              to="/PersonalData"
+              to="/Registro/PersonalData"
               className="text-blue-500 hover:text-blue-700 text-sm"
             >
               Previous Step

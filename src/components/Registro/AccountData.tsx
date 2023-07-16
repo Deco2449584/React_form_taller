@@ -1,17 +1,28 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAccountData } from "../../features/formSlice";
 import { AccountDataFormValues } from "../../models/DataFormValues";
 
 const AccountData: React.FC = () => {
+  const dispatch = useDispatch();
+  const accountData = useSelector(
+    (state: { form: { accountData: AccountDataFormValues } }) =>
+      state.form.accountData
+  );
+  const navigate = useNavigate();
+
   const initialValues: AccountDataFormValues = {
-    username: "",
-    password: "",
-    confirmPassword: "",
+    username: accountData.username,
+    password: accountData.password,
+    confirmPassword: accountData.confirmPassword,
   };
 
   const handleSubmit = (values: AccountDataFormValues) => {
+    dispatch(updateAccountData(values));
     console.log(values);
+    navigate("/Registro/Summary");
   };
 
   const validateForm = (values: AccountDataFormValues) => {
@@ -104,7 +115,7 @@ const AccountData: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <Link
-              to="/employment"
+              to="/Registro/EmploymentData"
               className="text-blue-500 hover:text-blue-700 text-sm"
             >
               Previous Step

@@ -1,17 +1,28 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFamilyData } from "../../features/formSlice";
 import { FamilyDataFormValues } from "../../models/DataFormValues";
 
 const FamilyData: React.FC = () => {
+  const dispatch = useDispatch();
+  const familyData = useSelector(
+    (state: { form: { familyData: FamilyDataFormValues } }) =>
+      state.form.familyData
+  );
+  const navigate = useNavigate();
+
   const initialValues: FamilyDataFormValues = {
-    parentName: "",
-    siblingName: "",
-    maritalStatus: "",
+    parentName: familyData.parentName,
+    siblingName: familyData.siblingName,
+    maritalStatus: familyData.maritalStatus,
   };
 
   const handleSubmit = (values: FamilyDataFormValues) => {
+    dispatch(updateFamilyData(values));
     console.log(values);
+    navigate("/Registro/EmploymentData"); // Redireccionar a la página "FamilyData"
   };
 
   const validateForm = (values: FamilyDataFormValues) => {
@@ -107,7 +118,7 @@ const FamilyData: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <Link
-              to="/AcademicData"
+              to="/Registro/AcademicData"
               className="text-blue-500 hover:text-blue-700 text-sm"
             >
               Previous Step
