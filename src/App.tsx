@@ -1,11 +1,11 @@
 import React from "react";
 
-import Login from "./pages/Login";
+import Registro from "./pages/Registro";
 
 const App: React.FC = () => {
   return (
     <div className="container mx-auto">
-      <Login></Login>
+      <Registro></Registro>
     </div>
   );
 };
