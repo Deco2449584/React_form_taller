@@ -1,16 +1,26 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import FormValues from "../models/FormValues";
-const initialValues: FormValues = {
-  User: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  country: "",
-  terms: false,
-};
+import { Link } from "react-router-dom";
+
+interface FormValues {
+  user: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  country: string;
+  terms: string;
+}
 
 const Signup: React.FC = () => {
+  const initialValues: FormValues = {
+    user: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    country: "",
+    terms: "",
+  };
+
   const handleSubmit = (values: FormValues) => {
     console.log(values);
   };
@@ -18,8 +28,8 @@ const Signup: React.FC = () => {
   const validateForm = (values: FormValues) => {
     const errors: Partial<FormValues> = {};
 
-    if (!values.User) {
-      errors.User = "Required";
+    if (!values.user) {
+      errors.user = "Required";
     }
 
     if (!values.email) {
@@ -32,6 +42,11 @@ const Signup: React.FC = () => {
       errors.password = "Required";
     } else if (values.password.length < 8) {
       errors.password = "Password must be at least 8 characters long";
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(values.password)
+    ) {
+      errors.password =
+        "Password must contain at least one lowercase letter, one uppercase letter, and one digit";
     }
 
     if (values.confirmPassword !== values.password) {
@@ -43,7 +58,7 @@ const Signup: React.FC = () => {
     }
 
     if (!values.terms) {
-      errors.terms = true;
+      errors.terms = "You must accept the terms and conditions";
     }
 
     return errors;
@@ -68,11 +83,11 @@ const Signup: React.FC = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
-              name="User"
+              name="user"
               placeholder="Enter your username"
             />
             <ErrorMessage
-              name="User"
+              name="user"
               component="div"
               className="text-red-500 text-xs mt-1"
             />
@@ -172,13 +187,21 @@ const Signup: React.FC = () => {
               className="text-red-500 text-xs mt-1"
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-center">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Sign Up
             </button>
+            <div className="mt-2">
+              <Link
+                to="/"
+                className="text-blue-500 hover:text-blue-700 text-sm"
+              >
+                Sign In
+              </Link>
+            </div>
           </div>
         </Form>
       </Formik>
