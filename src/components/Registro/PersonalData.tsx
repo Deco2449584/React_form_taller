@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-
-// Creamos una interfaz para los datos del formulario
-export interface PersonalDataFormValues {
-  firstName: string;
-  lastName: string;
-  birthDate: string;
-  gender: string;
-}
+import { PersonalDataFormValues } from "../../models/DataFormValues";
+import {
+  FormDataContext,
+  FormDataContextType,
+} from "../../context/FormDataContext";
 
 const PersonalData: React.FC = () => {
+  const { personalData, setPersonalData } = useContext<FormDataContextType>(
+    FormDataContext!
+  );
   const initialValues: PersonalDataFormValues = {
-    firstName: "",
-    lastName: "",
-    birthDate: "",
-    gender: "",
+    firstName: personalData.firstName,
+    lastName: personalData.lastName,
+    birthDate: personalData.birthDate,
+    gender: personalData.gender,
   };
   const navigate = useNavigate();
 
   const handleSubmit = (values: PersonalDataFormValues) => {
     console.log(values);
+    setPersonalData(values);
     navigate("/AcademicData"); // Redireccionar a la página "Academicos"
   };
 

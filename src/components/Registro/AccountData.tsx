@@ -1,13 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
-
-// Creamos una interfaz para los datos del formulario
-interface AccountDataFormValues {
-  username: string;
-  password: string;
-  confirmPassword: string;
-}
+import { AccountDataFormValues } from "../../models/DataFormValues";
 
 const AccountData: React.FC = () => {
   const initialValues: AccountDataFormValues = {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { FormDataProvider } from "../context/FormDataContext";
 
 import PersonalData from "../components/Registro/PersonalData";
 import AcademicData from "../components/Registro/AcademicData";
@@ -9,7 +10,7 @@ import AccountData from "../components/Registro/AccountData";
 
 const Registro: React.FC = () => {
   return (
-    <>
+    <FormDataProvider>
       <Routes>
         <Route path="/PersonalData" element={<PersonalData />} />
         <Route path="/AcademicData" element={<AcademicData />} />
@@ -17,7 +18,7 @@ const Registro: React.FC = () => {
         <Route path="/EmploymentData" element={<EmploymentData />} />
         <Route path="/AccountData" element={<AccountData />} />
       </Routes>
-    </>
+    </FormDataProvider>
   );
 };
 

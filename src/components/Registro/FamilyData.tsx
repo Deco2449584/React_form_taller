@@ -1,13 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
-
-// Creamos una interfaz para los datos del formulario
-interface FamilyDataFormValues {
-  parentName: string;
-  siblingName: string;
-  maritalStatus: string;
-}
+import { FamilyDataFormValues } from "../../models/DataFormValues";
 
 const FamilyData: React.FC = () => {
   const initialValues: FamilyDataFormValues = {
@@ -113,7 +107,7 @@ const FamilyData: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <Link
-              to="/academic"
+              to="/AcademicData"
               className="text-blue-500 hover:text-blue-700 text-sm"
             >
               Previous Step

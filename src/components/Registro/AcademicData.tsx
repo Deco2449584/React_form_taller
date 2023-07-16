@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
-
-// Creamos una interfaz para los datos del formulario
-export interface AcademicDataFormValues {
-  degree: string;
-  institution: string;
-  year: string;
-}
+import { Link, useNavigate } from "react-router-dom";
+import { AcademicDataFormValues } from "../../models/DataFormValues";
+import {
+  FormDataContext,
+  FormDataContextType,
+} from "../../context/FormDataContext";
 
 const AcademicData: React.FC = () => {
+  const { academicData, setAcademicData } = useContext<FormDataContextType>(
+    FormDataContext!
+  );
   const initialValues: AcademicDataFormValues = {
-    degree: "",
-    institution: "",
-    year: "",
+    degree: academicData.degree,
+    institution: academicData.institution,
+    year: academicData.year,
   };
+  const navigate = useNavigate();
 
   const handleSubmit = (values: AcademicDataFormValues) => {
     console.log(values);
+    setAcademicData(values);
+    navigate("/FamilyData"); // Redireccionar a la página "Academicos"
   };
 
   const validateForm = (values: AcademicDataFormValues) => {

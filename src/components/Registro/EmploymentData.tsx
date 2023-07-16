@@ -1,13 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
-
-// Creamos una interfaz para los datos del formulario
-interface EmploymentDataFormValues {
-  companyName: string;
-  position: string;
-  yearsOfWork: string;
-}
+import { EmploymentDataFormValues } from "../../models/DataFormValues";
 
 const EmploymentData: React.FC = () => {
   const initialValues: EmploymentDataFormValues = {
