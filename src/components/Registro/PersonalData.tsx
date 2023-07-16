@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+
 // Creamos una interfaz para los datos del formulario
-interface PersonalDataFormValues {
+export interface PersonalDataFormValues {
   firstName: string;
   lastName: string;
   birthDate: string;
@@ -10,18 +11,17 @@ interface PersonalDataFormValues {
 }
 
 const PersonalData: React.FC = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState<PersonalDataFormValues>({
+  const initialValues: PersonalDataFormValues = {
     firstName: "",
     lastName: "",
     birthDate: "",
     gender: "",
-  });
+  };
+  const navigate = useNavigate();
 
   const handleSubmit = (values: PersonalDataFormValues) => {
     console.log(values);
-    setFormData(values);
-    navigate("/academicos"); // Redireccionar a la página "Academicos"
+    navigate("/AcademicData"); // Redireccionar a la página "Academicos"
   };
 
   const validateForm = (values: PersonalDataFormValues) => {
@@ -45,21 +45,11 @@ const PersonalData: React.FC = () => {
 
     return errors;
   };
-  useEffect(() => {
-    const initialValues: PersonalDataFormValues = {
-      firstName: "",
-      lastName: "",
-      birthDate: "",
-      gender: "",
-    };
-
-    setFormData(initialValues);
-  }, []);
 
   return (
     <div className="flex items-center justify-center h-screen">
       <Formik
-        initialValues={formData}
+        initialValues={initialValues}
         onSubmit={handleSubmit}
         validate={validateForm}
       >

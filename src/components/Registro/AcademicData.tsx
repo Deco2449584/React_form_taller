@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 
 // Creamos una interfaz para los datos del formulario
-interface AcademicDataFormValues {
+export interface AcademicDataFormValues {
   degree: string;
   institution: string;
   year: string;
@@ -108,7 +108,7 @@ const AcademicData: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <Link
-              to="/personales"
+              to="/PersonalData"
               className="text-blue-500 hover:text-blue-700 text-sm"
             >
               Previous Step

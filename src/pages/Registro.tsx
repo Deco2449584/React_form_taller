@@ -1,21 +1,21 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Personales from "../components/Registro/personales";
-import Academicos from "../components/Registro/academicos";
-import Familiares from "../components/Registro/familiares";
-import Laborales from "../components/Registro/laborales";
-import DatosCuenta from "../components/Registro/datosCuenta";
+import PersonalData from "../components/Registro/PersonalData";
+import AcademicData from "../components/Registro/AcademicData";
+import FamilyData from "../components/Registro/FamilyData";
+import EmploymentData from "../components/Registro/EmploymentData";
+import AccountData from "../components/Registro/AccountData";
 
 const Registro: React.FC = () => {
   return (
     <>
       <Routes>
-        <Route path="/personales" element={<Personales />} />
-        <Route path="/academicos" element={<Academicos />} />
-        <Route path="/familiares" element={<Familiares />} />
-        <Route path="/laborales" element={<Laborales />} />
-        <Route path="/datoscuenta" element={<DatosCuenta />} />
+        <Route path="/PersonalData" element={<PersonalData />} />
+        <Route path="/AcademicData" element={<AcademicData />} />
+        <Route path="/FamilyData" element={<FamilyData />} />
+        <Route path="/EmploymentData" element={<EmploymentData />} />
+        <Route path="/AccountData" element={<AccountData />} />
       </Routes>
     </>
   );
