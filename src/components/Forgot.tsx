@@ -64,7 +64,7 @@ const Forgot: React.FC = () => {
             </button>
             <div className="mt-4">
               <Link
-                to="/"
+                to="/Login/"
                 className="text-blue-500 hover:text-blue-700 text-sm"
               >
                 Back to Sign In
@@ -72,7 +72,7 @@ const Forgot: React.FC = () => {
             </div>
             <div className="mt-2">
               <Link
-                to="/signup"
+                to="/Login/signup"
                 className="text-blue-500 hover:text-blue-700 text-sm"
               >
                 Sign Up

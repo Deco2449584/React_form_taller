@@ -95,7 +95,7 @@ const SignIn: React.FC = () => {
             </button>
             <div className="mt-4">
               <Link
-                to="/forgot"
+                to="/Login/forgot"
                 className="text-blue-500 hover:text-blue-700 text-sm"
               >
                 Forgot Password
@@ -103,7 +103,7 @@ const SignIn: React.FC = () => {
             </div>
             <div className="mt-2">
               <Link
-                to="/signup"
+                to="/Login/signup"
                 className="text-blue-500 hover:text-blue-700 text-sm"
               >
                 Sign Up

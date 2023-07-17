@@ -17,9 +17,14 @@ const Registro: React.FC = () => {
 
   return (
     <div className="registration-page">
-      <h1>Registro</h1>
-      <p>Bienvenido al proceso de registro.</p>
-      <button onClick={handleComenzarRegistro}>Comenzar el registro</button>
+      <h1 className="text-2xl font-bold mb-4">Registro</h1>
+      <p className="text-gray-600 mb-4">Bienvenido al proceso de registro.</p>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={handleComenzarRegistro}
+      >
+        Comenzar el registro
+      </button>
       <Routes>
         <Route path="/PersonalData" element={<PersonalData />} />
         <Route path="/AcademicData" element={<AcademicData />} />

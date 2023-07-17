@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const name = "John Doe";
+  const name = "Daniel Caro";
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
