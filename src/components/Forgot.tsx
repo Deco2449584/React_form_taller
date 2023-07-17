@@ -72,10 +72,10 @@ const Forgot: React.FC = () => {
             </div>
             <div className="mt-2">
               <Link
-                to="/Login/signup"
+                to="/"
                 className="text-blue-500 hover:text-blue-700 text-sm"
               >
-                Sign Up
+                Home
               </Link>
             </div>
           </div>
